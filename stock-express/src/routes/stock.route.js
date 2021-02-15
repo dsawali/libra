@@ -6,7 +6,7 @@ router.get('/search/:query', async (req, res) => {
   try {
     const query = req.params.query;
     const headers = {
-      'X-Finnhub-Token': 'c0l3j2v48v6und6selvg',
+      'X-Finnhub-Token': 'API_KEY',
     };
     const response = await fetch(`https://finnhub.io/api/v1/search?q=${query}`, { method: 'GET', headers });
     const data = await response.json();
@@ -21,7 +21,7 @@ router.get('/quote/:symbol', async (req, res) => {
   try {
     const symbol = req.params.symbol;
     const headers = {
-      'X-Finnhub-Token': 'c0l3j2v48v6und6selvg',
+      'X-Finnhub-Token': 'API_KEY',
     };
     const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}`, { method: 'GET', headers });
     const data = await response.json();
