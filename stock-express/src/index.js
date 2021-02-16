@@ -1,12 +1,17 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+import stock from './routes/stock.route.js';
 
-const stock = require('./routes/stock.route');
+const PORT = 8000;
+
+const app = express();
+const router = express.Router();
 
 router.get('/hello', (req, res) => {
   res.send('hello_world');
 });
 
-router.use('/stock', stock);
+app.use('/stock', stock);
 
-module.exports = router;
+app.listen(PORT, () => {
+  console.log('listening on port:', PORT)
+});
