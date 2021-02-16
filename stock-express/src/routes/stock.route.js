@@ -1,14 +1,24 @@
-const express = require('express');
+import express from 'express';
+import fetch from 'node-fetch';
+
+import config from '../config/config.js';
+
+
 const router = express.Router();
-const fetch = require('node-fetch');
 
 router.get('/search/:query', async (req, res) => {
   try {
     const query = req.params.query;
     const headers = {
-      'X-Finnhub-Token': 'API_KEY',
+      'X-Finnhub-Token': config.token,
     };
-    const response = await fetch(`https://finnhub.io/api/v1/search?q=${query}`, { method: 'GET', headers });
+    const response = await fetch(
+      `${config.baseurl}/search?q=${query}`, 
+      { 
+        method: 'GET', 
+        headers 
+      }
+    );
     const data = await response.json();
 
     res.send(data);
@@ -21,9 +31,15 @@ router.get('/quote/:symbol', async (req, res) => {
   try {
     const symbol = req.params.symbol;
     const headers = {
-      'X-Finnhub-Token': 'API_KEY',
+      'X-Finnhub-Token': config.token,
     };
-    const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}`, { method: 'GET', headers });
+    const response = await fetch(
+      `${config.baseurl}/quote?symbol=${symbol}`,
+      { 
+        method: 'GET', 
+        headers 
+      }
+    );
     const data = await response.json();
 
     res.send(data);
@@ -32,4 +48,4 @@ router.get('/quote/:symbol', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
