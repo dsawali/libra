@@ -1,20 +1,21 @@
 const fetch = require('node-fetch');
 
-const getSearchJSON = async (args) => {
-  const response = await fetch(`${process.env.BASEURL}/search/${args}`);
-  const data = await response.json();
-
-  return data;
-}
-
-const getQuoteJSON = async (args) => {
-  const response = await fetch(`${process.env.BASEURL}/quote/${args}`);
-  const data = await response.json();
-
-  return data
+const getResponseJSON = async (url) => {
+  try {
+    const response = await fetch(
+      url,
+      {
+        method: 'GET'
+      }
+    );
+    const data = await response.json();
+    // TODO: also return status code
+    return data;  
+  } catch (e) {
+    
+  }
 }
 
 module.exports = {
-  getSearchJSON,
-  getQuoteJSON
+  getResponseJSON
 };
