@@ -12,12 +12,17 @@ export const getResponseJSON = async (url) => {
       url, 
       { 
         method: 'GET', 
-        headers 
+        headers, 
       }
     );
+
+    if (!response.ok) {
+      return { status: response.status, error: response.statusText };
+    }
+
     const data = await response.json();
 
-    return { status: STATUS_CODE.OKAY, data };
+    return { status: response.status, data };
   } catch (e) {
     return { status: STATUS_CODE.INTERNAL_SERVER_ERROR, error: e.message };
   }
