@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/search/:query', async (req, res) => {
   const query = req.params.query;
-  const response = await getResponseJSON(`${config.baseurl}/search?query=${query}`);
+  const response = await getResponseJSON(`${config.baseurl}/search?q=${query}`);
 
   const { error, status, data } = response;
   if (error) {
