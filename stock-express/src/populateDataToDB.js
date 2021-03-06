@@ -3,7 +3,7 @@ import { connectDB, closeDB } from './utils/connectDB.js';
 import config from './config/config.js';
 import { supportedRegions } from './constants/constants.js';
 
-import Stock from './model/stock.model.js';
+import Stock from './models/stock.model.js';
 import { getResponseJSON } from './utils/common.util.js';
 
 connectDB();
