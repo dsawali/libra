@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import config from '../config/config.js';
 
-export const connectDB = (dbName) => {
-  mongoose.connect(`${config.mongoUrl}/iSight`, {useNewUrlParser: true, useUnifiedTopology: true});
+export const connectDB = (dbName = 'iSight') => {
+  mongoose.connect(`${config.mongoUrl}/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true});
   
   mongoose.connection.on('connected', () => { console.log('Connected to', dbName, 'DB') });
   mongoose.connection.on('error', (err) => { console.log('Connection error', err) });
