@@ -31,11 +31,20 @@ const StockModelSchema = new mongoose.Schema({
 
 const StockModel = mongoose.model(MODEL_NAME, StockModelSchema);
 
+
 const Stock = {
-  insertMany: (entries) => {
-    return StockModel.collection.insertMany(entries, (err) => {
-      if (err) throw new Error('Cannot create model');
-    });
+  populateDB: (entries) => {
+    return StockModel.collection.insertMany(entries);
+  },
+
+  findStock: (query) => {
+    const escapedQuery = query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    const regex = new RegExp(escapedQuery, 'gi');
+    return StockModel.collection.find({ $or: [{ symbol: regex }, { companyName: regex }] }).toArray();
+  },
+
+  search: (symbol) => {
+    return StockModel.collection.findOne({ symbol });
   },
 };
 
