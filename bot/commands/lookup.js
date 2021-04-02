@@ -1,4 +1,4 @@
-const util = require('../utils/common.util');
+const util = require('../utils/requestHandler.util');
 const config = require('../config/config');
 const lookupEmbed = require('../embeds/lookup.embed');
 
@@ -12,8 +12,7 @@ module.exports = {
 
   execute: async (message, query) => {
 
-    console.log(config.baseurl)
-    const searchResponse = await util.getResponseJSON(`${config.baseurl}/search/${query}`);
+    const searchResponse = await util.get(`${config.baseurl}/stock/search/${query}`);
     const data = searchResponse.result.slice(0, 5);
     
     const embedFields = fieldify(data);
