@@ -37,4 +37,15 @@ router.get('/quote/:symbol', async (req, res) => {
   return res.status(status).send(data);
 });
 
+router.get('/indicator/:symbol', async (req, res) => {
+  const symbol = req.params.symbol;
+  const response = await getResponseJSON(`${config.baseurl}/scan/technical-indicator?symbol=${symbol}&resolution=D`);
+
+  const { error, status, data } = response;
+  if (error) {
+    res.status(status).send(`Error received from aggregate indicator endpoint: ${error}`);
+  }
+  res.status(status).send(data);
+});
+
 export default router;
