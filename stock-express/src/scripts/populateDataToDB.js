@@ -1,10 +1,10 @@
-import { connectDB, closeDB } from './utils/connectDB.js';
+import { connectDB, closeDB } from '../utils/connectDB.js';
 
-import config from './config/config.js';
-import { supportedRegions } from './constants/constants.js';
+import config from '../config/config.js';
+import { supportedRegions } from '../constants/constants.js';
 
-import Stock from './models/stock.model.js';
-import { getResponseJSON } from './utils/common.util.js';
+import Stock from '../models/stock.model.js';
+import { getResponseJSON } from '../utils/common.util.js';
 
 connectDB();
 
@@ -30,9 +30,13 @@ const mapData = (rawData) => {
 };
 
 const populateDataToDB = async () => {
-  const mergedData = await mergeRegionData();
-  const mappedData = mapData(mergedData);
-  await Stock.insertMany(mappedData);
+  try {
+    const mergedData = await mergeRegionData();
+    const mappedData = mapData(mergedData);
+    await Stock.insertMany(mappedData);
+  } catch (e) {
+    console.log(e.message);
+  }
 };
 
 populateDataToDB();

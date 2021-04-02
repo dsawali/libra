@@ -1,8 +1,6 @@
 import express from 'express';
 import stock from './routes/stock.route.js';
-import user from './routes/user.route.js';
-
-import { connectDB, closeDB } from './utils/connectDB.js';
+import { connectDB } from './utils/connectDB.js';
 
 const PORT = 8000;
 
