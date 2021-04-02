@@ -10,9 +10,16 @@ const app = express();
 
 connectDB();
 
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
 app.use('/stock', stock);
 app.use('/user', user);
 
 app.listen(PORT, () => {
-  console.log('listening on port:', PORT)
+  console.log('listening on port:', PORT);
 });

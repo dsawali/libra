@@ -4,16 +4,20 @@ import config from '../config/config.js';
 mongoose.Promise = global.Promise;
 
 export const connectDB = () => {
-
-  mongoose.connect(
-    'mongodb://localhost:27017/iSight', {
-    useNewUrlParser: true, 
+  mongoose.connect('mongodb://localhost:27017/iSight', {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
-    keepAlive: true
+    keepAlive: true,
   });
-  mongoose.connection.on('connected', () => { console.log('Connected to DB') });
-  mongoose.connection.on('error', (err) => { console.log('Connection error', err) });
-  mongoose.connection.on('disconnected', () => { console.log('Connection disconnected') });
+  mongoose.connection.on('connected', () => {
+    console.log('Connected to DB');
+  });
+  mongoose.connection.on('error', (err) => {
+    console.log('Connection error', err);
+  });
+  mongoose.connection.on('disconnected', () => {
+    console.log('Connection disconnected');
+  });
 
   process.on('SIGINT', () => {
     mongoose.connection.close(() => {

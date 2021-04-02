@@ -8,13 +8,10 @@ export const getResponseJSON = async (url) => {
       'X-Finnhub-Token': config.token,
     };
 
-    const response = await fetch(
-      url, 
-      { 
-        method: 'GET', 
-        headers, 
-      }
-    );
+    const response = await fetch(url, {
+      method: 'GET',
+      headers,
+    });
 
     if (!response.ok) {
       return { status: response.status, error: response.statusText };

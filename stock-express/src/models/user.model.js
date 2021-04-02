@@ -1,37 +1,81 @@
 import Mongoose from 'mongoose';
 
-const UserSchema = new Mongoose.Schema({
-  usertag: {
+const HoldingsSchema = new Mongoose.Schema({
+  symbol: {
     type: String,
-    required: true
+    required: true,
   },
-  userid: {
+  amount: {
+    type: Number,
+    required: true,
+  },
+  averageCost: {
+    type: Number,
+  },
+  totalCost: {
+    type: Number,
+  },
+  currency: {
     type: String,
+  },
+});
+
+const HistorySchema = new Mongoose.Schema({
+  symbol: {
+    type: String,
+  },
+  amount: {
+    type: String,
+  },
+  cost: {
+    type: Number,
+  },
+  currency: {
+    type: String,
+  },
+  timestamp: {
+    type: Date,
+  },
+  transactionType: {
+    type: String,
+  },
+});
+
+const UserSchema = new Mongoose.Schema({
+  userTag: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: String,
+    required: true,
   },
   watchlist: {
     type: Array,
   },
   holdings: {
-    type: Array,
+    type: [HoldingsSchema],
   },
   cash: {
     type: Number,
   },
   history: {
-    type: Array
+    type: [HistorySchema],
   },
 });
 
 let UserModel = Mongoose.model('User', UserSchema);
 
-UserModel.createUser = async (userData) => {
-  return UserModel.collection.insertOne(userData, (err) => {
-    if (err) throw new Error('Cannot create model');
-  });
-}
+const User = {
+  createNewUser: async (userData) => {
+    return UserModel.create(userData);
+  },
 
-UserModel.getUser = async (id) => {
-  return UserModel.find({});
-}
+  getUser: async (id) => {
+    return UserModel.findOne({ userId: id }, (err) => {
+      if (err) throw new Error(`Cannot get user: ${err}`);
+    });
+  },
+};
 
-export default UserModel;
+export default User;

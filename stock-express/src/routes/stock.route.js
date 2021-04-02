@@ -12,18 +12,24 @@ router.get('/search/:query', async (req, res) => {
 
   const { error, status, data } = response;
   if (error) {
-    res.status(status).send(`Error received from stock lookup endpoint: ${error}`);
+    res
+      .status(status)
+      .send(`Error received from stock lookup endpoint: ${error}`);
   }
   res.status(status).send(data);
 });
 
 router.get('/quote/:symbol', async (req, res) => {
   const symbol = req.params.symbol;
-  const response = await getResponseJSON(`${config.baseurl}/quote?symbol=${symbol}`);
+  const response = await getResponseJSON(
+    `${config.baseurl}/quote?symbol=${symbol}`
+  );
 
   const { error, status, data } = response;
   if (error) {
-    res.status(status).send(`Error received from stock quote endpoint: ${error}`);
+    res
+      .status(status)
+      .send(`Error received from stock quote endpoint: ${error}`);
   }
   res.status(status).send(data);
 });
