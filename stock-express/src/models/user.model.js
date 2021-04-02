@@ -72,9 +72,7 @@ const User = {
   },
 
   getUser: async (id) => {
-    return UserModel.findOne({ userId: id }, (err) => {
-      if (err) throw new Error(`Cannot get user: ${err}`);
-    });
+    return UserModel.findOne({ userId: id });
   },
 };
 
