@@ -70,7 +70,6 @@ const User = {
   createNewUser: async (userData) => {
     return UserModel.create(userData);
   },
-
   getUser: async (id) => {
     return UserModel.findOne({ userId: id });
   },
