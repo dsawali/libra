@@ -11,8 +11,7 @@ module.exports = {
 
     const body = {
       userTag: tag,
-      userId: id,
-      cash: 10000
+      userId: id
     };
 
     let response;

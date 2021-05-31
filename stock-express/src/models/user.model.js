@@ -67,8 +67,12 @@ const UserSchema = new Mongoose.Schema({
 let UserModel = Mongoose.model('User', UserSchema);
 
 const User = {
-  createNewUser: async (userData) => {
-    return UserModel.create(userData);
+  createNewUser: async (data) => {
+    return UserModel.create({
+      userTag: data.userTag,
+      userId: data.userId,
+      cash: 10000
+    });
   },
   getUser: async (id) => {
     return UserModel.findOne({ userId: id });
