@@ -10,12 +10,12 @@ const createQuoteEmbed = (data, ticker) => {
       { name: 'High of the day', value: `${data.h}` },
       { name: 'Low of the day', value: `${data.l}` },
       { name: 'Previous close', value: `${data.pc}`, inline: true },
-      { name: 'Current price', value: `${data.c}`, inline: true },
-    )
+      { name: 'Current price', value: `${data.c}`, inline: true }
+    );
 
   return quoteEmbed;
-}
+};
 
 module.exports = {
-  createQuoteEmbed
-}
+  createQuoteEmbed,
+};

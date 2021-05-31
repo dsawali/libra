@@ -12,25 +12,30 @@ module.exports = {
     const body = {
       userTag: tag,
       userId: id
-    }
+    };
 
-    const response = await util.get(
-      `${config.baseurl}/user/0000000`
-    )
-    console.log(response);
+    let response;
 
     try {
-      const response = await util.post(
-        `${config.baseurl}/user/create`,
-        body
+      response = await util.post(`${config.baseurl}/user/create`, body);
+      if (response.status === 409) {
+        message.channel.send(
+          createPlainTextEmbed(
+            `Error creating user! User @${tag} already initialized! :x:`
+          )
+        );
+        return;
+      }
+    } catch (e) {
+      message.channel.send(
+        createPlainTextEmbed(`Error creating user: @${tag} :x:`)
       );
-      message.channel.send(
-        createPlainTextEmbed(`Successfully created user: @${tag} `)
-      )
-    } catch(e) {
-      message.channel.send(
-        createPlainTextEmbed(`Error creating user: ${tag} :x:`)
-      )
+      return;
     }
-  }
-}
+    if (response.status === 201) {
+      message.channel.send(
+        createPlainTextEmbed(`Successfully created user: @${tag} :dollar:`)
+      );
+    }
+  },
+};
