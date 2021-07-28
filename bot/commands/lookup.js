@@ -3,7 +3,7 @@ const config = require('../config/config');
 const lookupEmbed = require('../embeds/lookup.embed');
 
 const fieldify = (data) => {
-  return data.map((item) => ({ name: item.symbol, value: item.description }));
+  return data.map((item) => ({ name: item.symbol, value: item.companyName }));
 };
 
 module.exports = {
@@ -14,8 +14,7 @@ module.exports = {
     const searchResponse = await util.get(
       `${config.baseurl}/stock/search/${query}`
     );
-    const data = searchResponse.data.result.slice(0, 5);
-
+    const data = searchResponse.slice(0, 5);
     const embedFields = fieldify(data);
     const embed = lookupEmbed.createLookupEmbed(embedFields);
 

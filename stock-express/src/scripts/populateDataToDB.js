@@ -33,7 +33,7 @@ const populateDataToDB = async () => {
   try {
     const mergedData = await mergeRegionData();
     const mappedData = mapData(mergedData);
-    await Stock.insertMany(mappedData);
+    await Stock.populateDB(mappedData);
   } catch (e) {
     console.log(e.message);
   }

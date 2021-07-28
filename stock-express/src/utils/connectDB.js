@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import config from '../config/config.js';
 
-export const connectDB = (dbName = 'iSight') => {
+export const connectDB = (dbName = 'libra') => {
   mongoose.connect(`${config.mongoUrl}/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true});
   
   mongoose.connection.on('connected', () => { console.log('Connected to', dbName, 'DB') });

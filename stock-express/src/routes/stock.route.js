@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { getResponseJSON } from '../utils/common.util.js';
-
+import StockModel from '../models/stock.model.js';
 import config from '../config/config.js';
 import { STATUS_CODE } from '../constants/constants.js';
 
