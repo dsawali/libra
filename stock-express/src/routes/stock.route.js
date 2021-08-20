@@ -30,7 +30,7 @@ router.get('/quote/:symbol', async (req, res) => {
     return res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).send(e.message);
   }
 
-  const { error, status, data } = await getResponseJSON(`${config.baseurl}/quote?symbol=${symbol}`);
+  const { error, status, data } = await getResponseJSON(`${config.finnhubBaseurl}/quote?symbol=${symbol}`);
   if (error) {
     return res.status(status).send(`Error received from stock quote endpoint: ${error}`);
   }
