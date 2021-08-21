@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import config from '../config/config.js';
 
 export const connectDB = (dbName = 'libra') => {
-  mongoose.connect(`${config.mongoUrl}/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true});
-  
+  mongoose.connect(`${config.mongoUrl}/${dbName}`, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+
   mongoose.connection.on('connected', () => { console.log('Connected to', dbName, 'DB') });
   mongoose.connection.on('error', (err) => { console.log('Connection error', err) });
   mongoose.connection.on('disconnected', () => { console.log('Connection disconnected') });

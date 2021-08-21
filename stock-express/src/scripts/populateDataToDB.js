@@ -13,7 +13,7 @@ const mergeRegionData = async () => {
     // Need to wait for the returned merged data
     const mergedData = await currentData;
     const { data } = await getResponseJSON(
-      `${config.baseurl}/stock/symbol?exchange=${region}`
+      `${config.finnhubBaseurl}/stock/symbol?exchange=${region}`
     );
     mergedData.push(...data);
     return mergedData;

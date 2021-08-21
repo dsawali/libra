@@ -77,6 +77,12 @@ const User = {
   getUser: async (id) => {
     return UserModel.findOne({ userId: id });
   },
+  updateHoldings: async(id, holdings) => {
+    return UserModel.findOneAndUpdate({ userId: id }, { holdings: holdings });
+  },
+  updateCash: async(id, amount) => {
+    return UserModel.findOneAndUpdate({ userId: id }, { cash: amount });
+  }
 };
 
 export default User;

@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 require('dotenv').config();
 
-const prefix = process.env.PREFIX;
+const prefix = process.env.PREFIX ?? '$';
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
