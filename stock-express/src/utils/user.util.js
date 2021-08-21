@@ -6,12 +6,13 @@ export const generateNewHoldings = (amount, symbol, price, holdings) => {
   if (holdingIndex >= 0) {
     let currentHolding = holdings[holdingIndex];
 
+    const newTotalAmount = amount + currentHolding.amount;
     const newTotalCost = currentHolding.totalCost + (price*amount);
-    const newAverageCost = newTotalCost/ (amount + currentHolding.amount);
+    const newAverageCost = newTotalCost/ newTotalAmount;
 
     const newHolding = {
       symbol: symbol,
-      amount: amount + currentHolding.amount,
+      amount: newTotalAmount,
       averageCost: newAverageCost,
       totalCost: newTotalCost,
       currency: 'USD'
