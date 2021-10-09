@@ -1,0 +1,19 @@
+{
+  "name": "libra-integration-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine --require=esm ./spec/**/*.spec.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "axios": "0.21.1",
+    "esm": "^3.2.25",
+    "jasmine": "3.9.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "mongoose": "5.11.15"
+  }
+}

@@ -5,7 +5,7 @@ import { validateStock } from '../utils/stock.util.js';
 import { getResponseJSON } from '../utils/common.util.js';
 import { generateNewHoldings } from '../utils/user.util.js';
 
-import config from '../config/config.js';
+import config from '../configs/config.js';
 
 const router = express.Router();
 
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
   try {
     response = await User.getUser(req.params.id);
     if (!response) {
-      return res.status(STATUS_CODE.BAD_REQUEST).send(`Not Found`);
+      return res.status(STATUS_CODE.NOT_FOUND).send(`Not Found`);
     }
   } catch (e) {
     return res

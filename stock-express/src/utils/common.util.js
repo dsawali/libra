@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { STATUS_CODE } from '../constants/constants.js';
-import config from '../config/config.js';
+import config from '../configs/config.js';
 
 export const getResponseJSON = async (url) => {
   try {
