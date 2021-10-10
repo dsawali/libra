@@ -1,6 +1,6 @@
 import { connectDB, closeDB } from '../utils/connectDB.js';
 
-import config from '../config/config.js';
+import config from '../configs/config.js';
 import { supportedRegions } from '../constants/constants.js';
 
 import Stock from '../models/stock.model.js';

@@ -5,7 +5,6 @@ import { connectDB, connectTestDB } from './utils/connectDB.js';
 import config from './configs/config';
 
 const PORT = 8000;
-
 const app = express();
 
 config.isAutomation ? connectTestDB() : connectDB();
