@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js",
+    "dev": "nodemon -r esm ./src/index.js",
     "lint:prettier": "prettier --check src/**/*.js",
     "lint:prettierfix": "prettier --write src/**/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -r esm ./src/**/*.test.js",
     "populate": "node ./src/scripts/populateDataToDB.js"
   },
   "keywords": [],
@@ -21,8 +20,11 @@
     "node-fetch": "2.6.1"
   },
   "devDependencies": {
+    "esm": "3.2.25",
+    "mocha": "8.4.0",
     "dotenv": "8.2.0",
     "husky": "^6.0.0",
+    "mongodb-memory-server": "^7.3.6",
     "nodemon": "2.0.7",
     "prettier": "^2.2.1"
   }

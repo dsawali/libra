@@ -5,7 +5,7 @@ import { getResponseJSON } from '../utils/common.util.js';
 import { generateNewHoldings } from '../utils/user.util.js';
 
 import { STATUS_CODE } from '../constants/constants.js';
-import config from '../config/config.js';
+import config from '../configs/config.js';
 
 const UserController = {
   createUser: async (req, res) => {
@@ -33,7 +33,7 @@ const UserController = {
     try {
       response = await User.getUser(req.params.id);
       if (!response) {
-        return res.status(STATUS_CODE.BAD_REQUEST).send(`Not Found`);
+        return res.status(STATUS_CODE.NOT_FOUND).send(`Not Found`);
       }
     } catch (e) {
       return res
@@ -47,7 +47,6 @@ const UserController = {
   buyStock: async (req, res) => {
     const { symbol, amount } = req.body;
     const id = req.params.id;
-  
     /**
      *  Validate stock exists
      */

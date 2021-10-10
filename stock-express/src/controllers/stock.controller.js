@@ -3,7 +3,7 @@ import StockModel from '../models/stock.model.js';
 import { getResponseJSON } from '../utils/common.util.js';
 import { validateStock } from '../utils/stock.util.js';
 
-import config from '../config/config.js';
+import config from '../configs/config.js';
 import { STATUS_CODE } from '../constants/constants.js';
 
 const StockController = {
